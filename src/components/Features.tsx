@@ -31,18 +31,18 @@ export default function Features() {
 
   const features = [
     {
-      title: "Discover & Learn",
-      description: "Access a comprehensive library of articles, videos, and audio content about Islam. Explore answers to frequently asked questions and engage with a curated knowledge base.",
-      items: ["Text & Articles", "Videos", "Audios"],
+      title: "Seller Profiles & Global Sourcing",
+      description: "Create your seller profile and showcase products imported from around the world. Connect with international suppliers and bring premium fashion, clothing, and essentials to Dubai's thriving marketplace.",
+      items: ["Seller Dashboard", "Product Catalog", "International Sourcing"],
       imageLeft: true,
       image: "/assets/features.jpg"
     },
     {
-      title: "Interactive Video Conferencing",
-      description: "Join live video sessions with esteemed scholars. Schedule appointments and participate in ongoing discussions.",
-      items: ["Video Conferencing", "Appointments", "Chat Sessions"],
+      title: "Complete Marketplace Solution",
+      description: "Manage your entire business from one platform. List products, track inventory, process orders, and communicate with buyers seamlessly. From fashion boutiques to essential goods suppliers.",
+      items: ["Order Management", "Inventory Tracking", "Buyer Communication"],
       imageLeft: false,
-      image: "/assets/mazawee2.png"
+      image: "/assets/mazawe2.png"
     }
   ];
 
@@ -51,7 +51,7 @@ export default function Features() {
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="text-center mb-12">
           <p className="text-amber-800 font-medium text-sm uppercase tracking-wide mb-2">
-            Key Features Section
+            Platform Features
           </p>
         </div>
 
@@ -74,13 +74,12 @@ export default function Features() {
                     ? '-translate-x-full opacity-0' 
                     : 'translate-x-full opacity-0'
               }`}>
-                <div className="relative">
+                <div className="relative aspect-[4/3] w-full">
                   <Image
                     src={feature.image}
                     alt={`${feature.title} features`}
-                    width={600}
-                    height={400}
-                    className="w-full h-auto rounded-2xl shadow-lg"
+                    fill
+                    className="object-cover rounded-2xl shadow-lg"
                   />
                 </div>
               </div>
@@ -88,7 +87,7 @@ export default function Features() {
               {/* Content Section */}
               <div className={`${
                 feature.imageLeft ? 'lg:order-2' : 'lg:order-1'
-              } space-y-4 transform transition-all duration-1000 ease-out delay-200 ${
+              } space-y-4 transform transition-all duration-1000 ease-out delay-200 flex flex-col justify-center ${
                 visibleSections.has(index) 
                   ? 'translate-x-0 opacity-100' 
                   : feature.imageLeft 

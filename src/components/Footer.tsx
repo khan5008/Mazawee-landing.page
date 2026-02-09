@@ -2,10 +2,19 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import ContactModal from './ContactModal';
 
 export default function Footer() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <>
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
+
       {/* Download Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -33,7 +42,7 @@ export default function Footer() {
                   Download Now
                 </h2>
                 <p className="text-lg md:text-xl mb-8 opacity-90">
-                  Now Available on both Android & iOS
+                  Now Available on both Android & iOS - Start Shopping Today!
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -43,7 +52,7 @@ export default function Footer() {
                   >
                     <div className="flex items-center space-x-3">
                       <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.523 15.3414c-.5511 0-.9993-.4482-.9993-.9993s.4482-.9993.9993-.9993.9993.4482.9993.9993-.4482.9993-.9993.9993zm-11.046 0c-.5511 0-.9993-.4482-.9993-.9993s.4482-.9993.9993-.9993.9993.4482.9993.9993-.4482.9993-.9993.9993z"/>
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                       </svg>
                       <div className="text-left">
                         <div className="text-xs font-medium">GET IT ON</div>
@@ -90,7 +99,7 @@ export default function Footer() {
                 />
               </div>
               <p className="text-amber-800 leading-relaxed mb-6 max-w-md" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '16px', fontWeight: 400 }}>
-                Connect, Learn, and Grow with Trusted Islamic Resources and Support.
+                Dubai's Premier Marketplace - Connecting Global Sellers with Local Buyers.
               </p>
               
               {/* Social Icons */}
@@ -122,9 +131,9 @@ export default function Footer() {
             <div>
               <h3 className="text-amber-950 font-bold text-lg mb-4">Quick Access</h3>
               <ul className="space-y-3">
-                <li><Link href="#features" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">Key Features</Link></li>
-                <li><Link href="#" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">For Reverts</Link></li>
-                <li><Link href="#" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">Dawah Centers</Link></li>
+                <li><Link href="#features" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">Platform Features</Link></li>
+                <li><Link href="#" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">For Sellers</Link></li>
+                <li><Link href="#" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">For Buyers</Link></li>
               </ul>
             </div>
 
@@ -132,7 +141,14 @@ export default function Footer() {
             <div>
               <h3 className="text-amber-950 font-bold text-lg mb-4">Links</h3>
               <ul className="space-y-3">
-                <li><Link href="/contact" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">Contact Us</Link></li>
+                <li>
+                  <button 
+                    onClick={() => setIsContactModalOpen(true)}
+                    className="text-amber-800 hover:text-amber-900 transition-colors duration-300"
+                  >
+                    Contact Us
+                  </button>
+                </li>
                 <li><Link href="/privacy" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="text-amber-800 hover:text-amber-900 transition-colors duration-300">Terms & Conditions</Link></li>
               </ul>

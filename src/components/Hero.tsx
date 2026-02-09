@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
+import ContactModal from './ContactModal';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -25,6 +27,7 @@ export default function Hero() {
   }, []);
 
   return (
+    <>
     <section 
       ref={heroRef}
       className="h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 overflow-hidden flex items-center"
@@ -44,25 +47,25 @@ export default function Hero() {
               </h1>
               
               <h2 className="text-amber-900 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '22px', fontWeight: 500 }}>
-                Connect, Learn, and Grow with Trusted Islamic Resources and Support
+                Dubai's Premier Marketplace for Global Products
               </h2>
               
               <p className="text-amber-800 leading-relaxed max-w-xl" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '16px', fontWeight: 400 }}>
-                In today's fast-paced world, finding reliable, comprehensive, and easily 
-                accessible resources for Islamic knowledge can be challenging. The Mazawee App 
-                has been created to bridge this gap and become your ultimate companion 
-                for learning, exploration, and connection within the Muslim community.
+                Connect with sellers across Dubai who bring the world's finest products to your doorstep. 
+                From international fashion and clothing to everyday essentials, discover a curated marketplace 
+                where Dubai-based sellers import and offer premium products from around the globe. 
+                Shop everything you need in one convenient platform.
               </p>
             </div>
 
             {/* Single CTA Button */}
             <div className="pt-2">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setIsContactModalOpen(true)}
                 className="inline-block bg-amber-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-amber-900 hover:shadow-lg transition-all duration-300 text-base"
               >
                 Contact Us
-              </Link>
+              </button>
             </div>
 
             {/* App Store Buttons */}
@@ -73,7 +76,7 @@ export default function Hero() {
               >
                 <div className="flex items-center space-x-3">
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.523 15.3414c-.5511 0-.9993-.4482-.9993-.9993s.4482-.9993.9993-.9993.9993.4482.9993.9993-.4482.9993-.9993.9993zm-11.046 0c-.5511 0-.9993-.4482-.9993-.9993s.4482-.9993.9993-.9993.9993.4482.9993.9993-.4482.9993-.9993.9993z"/>
+                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                   </svg>
                   <div className="text-left">
                     <div className="text-xs font-medium">GET IT ON</div>
@@ -118,14 +121,16 @@ export default function Hero() {
                   </video>
                 </div>
               </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -top-6 -left-6 w-16 h-16 bg-amber-300 rounded-full opacity-60 animate-pulse"></div>
-              <div className="absolute -bottom-8 -right-8 w-20 h-20 bg-amber-400 rounded-full opacity-40 animate-bounce"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <ContactModal 
+      isOpen={isContactModalOpen} 
+      onClose={() => setIsContactModalOpen(false)} 
+    />
+    </>
   );
 }

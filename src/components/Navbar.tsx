@@ -2,10 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import ContactModal from './ContactModal';
 
 export default function Navbar() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
-    <nav className="sticky top-0 z-50 w-full">
+    <>
+      <nav className="sticky top-0 z-50 w-full">
       {/* Background image container with better clarity */}
       <div className="relative w-full h-20 md:h-24">
         <Image
@@ -53,14 +58,14 @@ export default function Navbar() {
               href="#app-experience" 
               className="text-white hover:text-amber-100 transition-all duration-300 font-bold text-xl drop-shadow-lg hover:scale-105"
             >
-              App Experience
+              Shop Now
             </Link>
-            <Link 
-              href="/contact" 
+            <button
+              onClick={() => setIsContactModalOpen(true)}
               className="text-white hover:text-amber-100 transition-all duration-300 font-bold text-xl drop-shadow-lg hover:scale-105"
             >
               Contact
-            </Link>
+            </button>
           </div>
 
           {/* CTA Button */}
@@ -69,7 +74,7 @@ export default function Navbar() {
               href="/signup"
               className="bg-white text-amber-900 px-8 py-4 md:px-10 md:py-4 rounded-full font-bold hover:bg-amber-50 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-lg md:text-xl shadow-xl border-2 border-white/20"
             >
-              Get Started
+              Become a Seller
             </Link>
           </div>
 
@@ -84,5 +89,11 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
+
+    <ContactModal 
+      isOpen={isContactModalOpen} 
+      onClose={() => setIsContactModalOpen(false)} 
+    />
+    </>
   );
 }
