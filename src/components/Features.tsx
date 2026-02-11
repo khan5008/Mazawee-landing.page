@@ -94,11 +94,11 @@ export default function Features() {
                     ? 'translate-x-full opacity-0' 
                     : '-translate-x-full opacity-0'
               }`}>
-                <h2 className="text-amber-950 leading-tight" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '30px', fontWeight: 500 }}>
+                <h2 className="text-amber-950 leading-tight" style={{ fontFamily: 'Poppins, sans-serif', fontSize: 'clamp(20px, 5vw, 30px)', fontWeight: 500 }}>
                   {feature.title}
                 </h2>
                 
-                <p className="text-amber-800 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '16px', fontWeight: 400 }}>
+                <p className="text-amber-800 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif', fontSize: 'clamp(14px, 3vw, 16px)', fontWeight: 400 }}>
                   {feature.description}
                 </p>
 

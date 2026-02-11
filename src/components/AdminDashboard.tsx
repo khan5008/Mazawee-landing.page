@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from 'react';
 
 export default function AdminDashboard() {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentImageSet, setCurrentImageSet] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -22,6 +23,15 @@ export default function AdminDashboard() {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Auto-rotate images every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageSet((prev) => (prev === 0 ? 1 : 0));
+    }, 3000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -44,40 +54,77 @@ export default function AdminDashboard() {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="flex flex-row justify-center items-center gap-4 sm:gap-6 md:gap-12 lg:gap-20">
           
-          {/* Left Column - Web Dashboard */}
+          {/* Left Column - Mobile Phone Mockup */}
           <div className={`transform transition-all duration-1000 ease-out ${
             isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
           }`}>
-            <div className="relative">
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-white">
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                >
-                  <source src="/assets/website.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+            <div className="relative flex justify-center items-center">
+              {/* Mobile Phone Frame - Static */}
+              <div className="relative transform -rotate-12 hover:-rotate-6 transition-all duration-500">
+                <div className="relative bg-gray-900 rounded-[2rem] md:rounded-[3rem] p-2 md:p-3 shadow-2xl">
+                  <div className="relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden w-[140px] h-[280px] sm:w-[180px] sm:h-[360px] md:w-[240px] md:h-[480px] lg:w-[280px] lg:h-[560px]">
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 md:w-24 lg:w-32 h-4 md:h-5 lg:h-6 bg-gray-900 rounded-b-2xl md:rounded-b-3xl z-10"></div>
+                    
+                    {/* Image Content - Changes */}
+                    <div className="relative w-full h-full">
+                      {currentImageSet === 0 && (
+                        <Image
+                          src="/assets/inclineimg.jpeg"
+                          alt="Mobile App Screen 1"
+                          fill
+                          className="object-cover animate-fadeIn"
+                        />
+                      )}
+                      {currentImageSet === 1 && (
+                        <Image
+                          src="/assets/inclineimg3.jpeg"
+                          alt="Mobile App Screen 3"
+                          fill
+                          className="object-cover animate-fadeIn"
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column - Mobile App Preview */}
+          {/* Right Column - Mobile Phone Mockup */}
           <div className={`transform transition-all duration-1000 ease-out delay-300 ${
             isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
           }`}>
-            <div className="relative flex justify-center">
-              <Image
-                src="/assets/features1.jpg"
-                alt="Mobile App Features"
-                width={400}
-                height={600}
-                className="w-full max-w-md h-auto rounded-2xl shadow-2xl"
-              />
+            <div className="relative flex justify-center items-center">
+              {/* Mobile Phone Frame - Static */}
+              <div className="relative transform rotate-12 hover:rotate-6 transition-all duration-500">
+                <div className="relative bg-gray-900 rounded-[2rem] md:rounded-[3rem] p-2 md:p-3 shadow-2xl">
+                  <div className="relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden w-[140px] h-[280px] sm:w-[180px] sm:h-[360px] md:w-[240px] md:h-[480px] lg:w-[280px] lg:h-[560px]">
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 md:w-24 lg:w-32 h-4 md:h-5 lg:h-6 bg-gray-900 rounded-b-2xl md:rounded-b-3xl z-10"></div>
+                    
+                    {/* Image Content - Changes */}
+                    <div className="relative w-full h-full">
+                      {currentImageSet === 0 && (
+                        <Image
+                          src="/assets/inclineimg2.jpeg"
+                          alt="Mobile App Screen 2"
+                          fill
+                          className="object-cover animate-fadeIn"
+                        />
+                      )}
+                      {currentImageSet === 1 && (
+                        <Image
+                          src="/assets/inclineimg4.jpeg"
+                          alt="Mobile App Screen 4"
+                          fill
+                          className="object-cover animate-fadeIn"
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

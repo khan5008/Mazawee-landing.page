@@ -70,12 +70,12 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="flex-shrink-0">
-            <Link
-              href="/signup"
-              className="bg-white text-amber-900 px-8 py-4 md:px-10 md:py-4 rounded-full font-bold hover:bg-amber-50 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-lg md:text-xl shadow-xl border-2 border-white/20"
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="bg-white text-amber-900 px-4 py-2 md:px-8 md:py-4 lg:px-10 lg:py-4 rounded-full font-bold hover:bg-amber-50 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-sm md:text-lg lg:text-xl shadow-xl border-2 border-white/20 whitespace-nowrap"
             >
               Become a Seller
-            </Link>
+            </button>
           </div>
 
           {/* Mobile menu button */}
